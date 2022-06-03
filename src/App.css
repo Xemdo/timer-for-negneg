@@ -24,8 +24,12 @@
   color: white;
 }
 
-.App-link {
+.App-header a {
   color: #61dafb;
+}
+
+.App-header a:hover {
+  color:#EFCD65;
 }
 
 @keyframes App-logo-spin {
