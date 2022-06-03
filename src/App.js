@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import moment from 'moment';
 
@@ -21,7 +20,7 @@ function App() {
           Time since NegNeg left us:<br/>
           {diffDays} days, {diffHours} hours, {diffMinutes} minutes, {diffSeconds}.{msAsString} seconds
         </p>
-        <img src="sadge.png" className='sadge' onClick={ () => gottem() } />
+        <img src= {process.env.PUBLIC_URL + "/sadge.png"} className='sadge' onClick={ () => gottem() } />
         <p class="msg"></p>
       </header>
     </div>
@@ -29,8 +28,8 @@ function App() {
 }
 
 function gottem() {
-  document.getElementsByClassName('sadge')[0].src = 'RIPBOZO.gif';
-  document.getElementsByClassName('msg')[0].innerHTML = '<a href="https://twitch.tv/whodat950">TIME TO WATCH WHODAT INSTEAD<br /><img src="OMEGADANCE.GIF"></a>';
+  document.getElementsByClassName('sadge')[0].src = process.env.PUBLIC_URL + '/RIPBOZO.gif';
+  document.getElementsByClassName('msg')[0].innerHTML = `<a href="https://twitch.tv/whodat950">TIME TO WATCH WHODAT INSTEAD<br /><img src="${process.env.PUBLIC_URL}/OMEGADANCE.GIF"></a>`;
   document.title = "RIPBOZO";
 }
 
