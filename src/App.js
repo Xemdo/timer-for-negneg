@@ -31,6 +31,7 @@ function App() {
 function gottem() {
   document.getElementsByClassName('sadge')[0].src = 'RIPBOZO.gif';
   document.getElementsByClassName('msg')[0].innerHTML = '<a href="https://twitch.tv/whodat950">TIME TO WATCH WHODAT INSTEAD<br /><img src="OMEGADANCE.GIF"></a>';
+  document.title = "RIPBOZO";
 }
 
 export default App;
