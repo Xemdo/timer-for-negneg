@@ -11,7 +11,6 @@ function App() {
   var diffSeconds = (timeNowUTC.diff(lastStreamedUTC, 'seconds') - (diffDays * 86400)) % 60;
   var diffMilliseconds = (timeNowUTC.diff(lastStreamedUTC, 'milliseconds') - (diffDays * 86400000)) % 1000;
   var msAsString = (diffMilliseconds < 10 ? '0' : '') + (diffMilliseconds < 100 ? '0' : '') + `${diffMilliseconds}`
-  console.log(moment.utc().format() + " ; " + moment.utc().hours());
 
   return (
     <div className="App">
@@ -29,7 +28,7 @@ function App() {
 
 function gottem() {
   document.getElementsByClassName('sadge')[0].src = process.env.PUBLIC_URL + '/RIPBOZO.gif';
-  document.getElementsByClassName('msg')[0].innerHTML = `<a href="https://twitch.tv/whodat950">TIME TO WATCH WHODAT INSTEAD<br /><img src="${process.env.PUBLIC_URL}/OMEGADANCE.GIF"></a>`;
+  document.getElementsByClassName('msg')[0].innerHTML = `<a href="https://twitch.tv/whodat950">TIME TO WATCH WHODAT INSTEAD<br /><img src="${process.env.PUBLIC_URL}/OMEGADANCE.gif"></a>`;
   document.title = "RIPBOZO";
 }
 
