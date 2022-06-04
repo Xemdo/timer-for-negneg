@@ -20,15 +20,21 @@ function App() {
           {diffDays} days, {diffHours} hours, {diffMinutes} minutes, {diffSeconds}.{msAsString} seconds
         </p>
         <img src= {process.env.PUBLIC_URL + "/sadge.png"} className='sadge' onClick={ () => gottem() } />
-        <p class="msg"></p>
+        <p className="msg"></p>
       </header>
     </div>
   );
 }
 
+var s3k = [ ['EVAN', 'https://twitch.tv/evan_gao'], ['WHODAT', 'https://twitch.tv/whodat950'], ['SYKIK', 'https://twitch.tv/sykiklive'] ];
+
 function gottem() {
+  /* Check if someone is live instead? */
+  let randomS3K = s3k[Math.floor(Math.random() * s3k.length)];
+  console.log(randomS3K);
+
   document.getElementsByClassName('sadge')[0].src = process.env.PUBLIC_URL + '/RIPBOZO.gif';
-  document.getElementsByClassName('msg')[0].innerHTML = `<a href="https://twitch.tv/evan_gao">TIME TO WATCH EVAN INSTEAD<br /><img src="${process.env.PUBLIC_URL}/OMEGADANCE.gif"></a>`;
+  document.getElementsByClassName('msg')[0].innerHTML = `<a href="${randomS3K[1]}">TIME TO WATCH ${randomS3K[0]} INSTEAD<br /><img src="${process.env.PUBLIC_URL}/OMEGADANCE.gif"></a>`;
   document.title = "RIPBOZO";
 }
 
