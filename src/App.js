@@ -28,7 +28,7 @@ function App() {
 
 function gottem() {
   document.getElementsByClassName('sadge')[0].src = process.env.PUBLIC_URL + '/RIPBOZO.gif';
-  document.getElementsByClassName('msg')[0].innerHTML = `<a href="https://twitch.tv/whodat950">TIME TO WATCH WHODAT INSTEAD<br /><img src="${process.env.PUBLIC_URL}/OMEGADANCE.gif"></a>`;
+  document.getElementsByClassName('msg')[0].innerHTML = `<a href="https://twitch.tv/evan_gao">TIME TO WATCH EVAN INSTEAD<br /><img src="${process.env.PUBLIC_URL}/OMEGADANCE.gif"></a>`;
   document.title = "RIPBOZO";
 }
 
