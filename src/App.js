@@ -8,9 +8,11 @@ function App() {
     streamInfo = JSON.parse(getStreamInfo());
   }
 
-  if (streamInfo.live == false) {
+  if (streamInfo.live === false) {
     // Not live... Sadge...
-    var lastStreamedUTC = moment.unix(1656898638).utc();
+    var lastStreamedUTC = moment.unix(Math.trunc(streamInfo.lastLive / 1000)).utc();
+    //1659573056091
+    //1656898638
     var timeNowUTC = moment.utc();
     
     var diffDays = timeNowUTC.diff(lastStreamedUTC, 'days');
@@ -55,14 +57,22 @@ function getStreamInfo() {
   return req.responseText;
 }
 
-var s3k = [ ['EVAN', 'https://twitch.tv/evan_gao'], ['WHODAT', 'https://twitch.tv/whodat950'], ['SYKIK', 'https://twitch.tv/sykiklive'], ['ROBYN', 'https://twitch.tv/water_addict'], ['ASPECTICOR', 'https://twitch.tv/aspecticor'] ];
+var s3k = [ ['EVAN', 'https://twitch.tv/evan_gao'], ['WHODAT', 'https://twitch.tv/whodat950'], ['SYKIK', 'https://twitch.tv/sykiklive'], ['ROBYN', 'https://twitch.tv/water_addict'], ['AVGHANS', 'https://twitch.tv/avghans'], ['ASPECTICOR', 'https://twitch.tv/aspecticor'] ];
+var currentS3K = s3k[Math.floor(Math.random() * s3k.length)];
 
 function gottem() {
   /* Check if someone is live instead? */
-  let randomS3K = s3k[Math.floor(Math.random() * s3k.length)];
+  let randomS3K = undefined;
+
+  // Loop until its a unique person. This should stop repeats.
+  do {
+    randomS3K = s3k[Math.floor(Math.random() * s3k.length)];
+  } while (randomS3K[0] == currentS3K[0]);
+
+  currentS3K = randomS3K;
 
   document.getElementsByClassName('sadge')[0].src = process.env.PUBLIC_URL + '/RIPBOZO.gif';
-  document.getElementsByClassName('msg')[0].innerHTML = `<a href="${randomS3K[1]}">TIME TO WATCH ${randomS3K[0]} INSTEAD<br /><img src="${process.env.PUBLIC_URL}/OMEGADANCE.gif"></a>`;
+  document.getElementsByClassName('msg')[0].innerHTML = `<a href="${currentS3K[1]}">TIME TO WATCH ${currentS3K[0]} INSTEAD<br /><img src="${process.env.PUBLIC_URL}/OMEGADANCE.gif"></a>`;
   document.title = "RIPBOZO";
 }
 
