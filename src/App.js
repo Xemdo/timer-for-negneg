@@ -1,6 +1,53 @@
 import './App.css';
 import moment from 'moment';
 
+(function loadYoutubeIFrameAPIScript() {
+	const tag = document.createElement("script");
+	tag.src = "https://www.youtube.com/iframe_api";
+
+	const firstScriptTag = document.getElementsByTagName("script")[0];
+	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+	tag.onload = setupPlayer;
+})();
+
+var player, playing = false;
+
+function setupPlayer() {
+	window.YT.ready(() => {
+		player = new window.YT.Player('yt-video', {
+			height: '315',
+			width: '560',
+			videoId: '4r4N0gpfqLA',
+			playerVars: { 'autoplay': 1 },
+			events: {
+				'onStateChange': onPlayerStateChange
+			}
+		});
+	});	
+}
+
+function onPlayerStateChange(event) {
+	let vid = document.getElementById("yt-video");
+
+	if (event.data == window.YT.PlayerState.PLAYING) {
+		if (vid.style.animationIterationCount == "0") {
+			vid.style.animationIterationCount = "infinite";
+		}
+		vid.style.animationPlayState = "running";
+		playing = true;
+	} else if (event.data == window.YT.PlayerState.PAUSED) {
+		vid.style.animationPlayState = "paused";
+		playing = false;
+	} else if (event.data == window.YT.PlayerState.ENDED) {
+		vid.style.animationPlayState = "paused";
+		vid.style.animationIterationCount = "0";
+		vid.style.border = "3px solid black";
+
+		playing = false;
+	}
+}
+
 var streamInfo = undefined;
 
 function App() {
@@ -11,8 +58,6 @@ function App() {
   if (streamInfo.live === false) {
     // Not live... Sadge...
     var lastStreamedUTC = moment.unix(Math.trunc(streamInfo.lastLive / 1000)).utc();
-    //1659573056091
-    //1656898638
     var timeNowUTC = moment.utc();
     
     var diffDays = timeNowUTC.diff(lastStreamedUTC, 'days');
@@ -30,7 +75,9 @@ function App() {
             {diffDays} days, {diffHours} hours, {diffMinutes} minutes, {diffSeconds}.{msAsString} seconds
           </p>
           <img src= {process.env.PUBLIC_URL + "/sadge.png"} className='sadge' onClick={ () => gottem() } />
-          <p className="msg"></p>
+          <p className="msg">
+			  <div id="yt-video"></div>
+		  </p>
         </header>
       </div>
     );

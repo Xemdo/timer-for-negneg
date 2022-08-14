@@ -2,17 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -24,19 +13,41 @@
   color: white;
 }
 
-.App-header a {
-  color: #61dafb;
+.msg iframe {
+	animation-name: borderColor;
+	animation-duration: 4.05s; /* (81 bpm / 60 seconds) * (# of colors) */
+	animation-iteration-count: infinite;
+	animation-direction: normal;
+	animation-play-state: paused;
 }
 
-.App-header a:hover {
-  color:#EFCD65;
-}
+/* To avoid smooth transitions, which CSS likes by default, we have to set the color again at the percentage right before the next jump. E.g., 0% is color1, 32% is color1, 33% is color2. */
+@keyframes borderColor {
+	0% {
+		border:3px solid #E5F0F6;
+	}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	32% {
+		border:3px solid #E5F0F6;
+	}
+
+	33% {
+		border:3px solid #1896B5;
+	}
+
+	65% {
+		border:3px solid #1896B5;
+	}
+
+	66% {
+		border:3px solid #5C3C2E;
+	}
+
+	99% {
+		border:3px solid #5C3C2E;
+	}
+
+	100% {
+		border:3px solid #E5F0F6;
+	}
 }
