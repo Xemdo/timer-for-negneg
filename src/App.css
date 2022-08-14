@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+.App-header a {
+	color: #61dafb;
+}
+
+.App-header a:hover {
+	color:#EFCD65;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
